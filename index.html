@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Positivity Hub - Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: url('ppppp.jpeg');
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #2c3e50;
+    }
+
+    .login-container {
+      background: rgba(223, 220, 220, 0.95);
+      width: 90%;
+      max-width: 400px;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      animation: fadeIn 0.8s ease-out;
+    }
+  .login-container img {
+      width: 70px;
+      margin-bottom: 20px;
+      animation: fadein 1s ease-in;
+ }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      width: 100px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #4a6fa5;
+    }
+
+    p.subtitle {
+      color: #7f8c8d;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #6ab7ff;
+      box-shadow: 0 0 0 3px rgba(107, 183, 255, 0.2);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      background: linear-gradient(45deg, #6ab7ff, #b388ff);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(107, 183, 255, 0.3);
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(107, 183, 255, 0.4);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .links {
+      margin-top: 25px;
+      font-size: 0.95rem;
+    }
+
+    .links a {
+      color: #6ab7ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.9rem;
+      margin-top: 5px;
+      display: none;
+    }
+
+    /* Dark Mode */
+    body.dark {
+      background: linear-gradient(135deg, #1c1c1c 0%, #2d2d2d 100%);
+      color: #f5f7fa;
+    }
+
+    body.dark .login-container {
+      background: rgba(46, 46, 46, 0.95);
+      color: #f5f7fa;
+    }
+
+    body.dark h1 {
+      color: #6ab7ff;
+    }
+
+    body.dark p.subtitle {
+      color: #a0aec0;
+    }
+
+    body.dark label {
+      color: #f5f7fa;
+    }
+
+    body.dark input {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #f5f7fa;
+    }
+
+    body.dark input:focus {
+      border-color: #6a11cb;
+      box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+    }
+
+    body.dark .login-btn {
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+    }
+
+    body.dark .login-btn:hover {
+      box-shadow: 0 6px 20px rgba(106, 17, 203, 0.4);
+    }
+
+    body.dark .links a {
+      color: #b388ff;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #2c3e50;
+    }
+
+    body.dark .theme-toggle {
+      color: #f5f7fa;
+      background: rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleDarkMode()">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <div class="login-container">
+
+    <img src="logo sakura.png" alt="user-icon"><img src="LOGO.png" alt="user-icon">
+    <h1>Selamat Datang</h1>
+    <p class="subtitle">Masuk untuk melanjutkan</p>
+    
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" required>
+        <div id="usernameError" class="error-message">Username tidak ditemukan</div>
+      </div>
+      
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+        <div id="passwordError" class="error-message">Password salah</div>
+      </div>
+      
+      <button type="submit" class="login-btn">
+        <i class="fas fa-sign-in-alt"></i> Masuk
+      </button>
+    </form>
+    
+    <div class="links">
+      Belum punya akun? <a href="s.up.html">Daftar disini</a>
+    </div>
+  </div>
+
+  <script>
+    // Toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+      
+      const icon = document.querySelector('.theme-toggle i');
+      if (document.body.classList.contains('dark')) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+      }
+    }
+    
+    // Terapkan dark mode jika ada di localStorage
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark');
+      document.querySelector('.theme-toggle i').classList.replace('fa-moon', 'fa-sun');
+    }
+    
+    // Handle form login
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      
+      // Sembunyikan pesan error sebelumnya
+      document.getElementById('usernameError').style.display = 'none';
+      document.getElementById('passwordError').style.display = 'none';
+      
+      // Ambil data user dari localStorage
+      const users = JSON.parse(localStorage.getItem('users')) || {};
+      
+      // Validasi login
+      if (!users[username]) {
+        document.getElementById('usernameError').style.display = 'block';
+        return;
+      }
+      
+      if (users[username].password !== password) {
+        document.getElementById('passwordError').style.display = 'block';
+        return;
+      }
+      
+      // Login berhasil, set currentUser
+      const currentUser = {
+        username: username,
+        points: users[username].points || 0,
+        actions: users[username].actions || [],
+        joinDate: users[username].joinDate || new Date().toISOString()
+      };
+      
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      
+      // Redirect ke halaman utama
+      window.location.href = 'h.page.html';
+    });
+    
+    </script>
+</body>
+</html>

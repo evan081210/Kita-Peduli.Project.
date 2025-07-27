@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kenali Gejala Burnout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+   body {
+      font-family: 'Segoe UI', sans-serif;
+      background:url('ppppp.jpeg');
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    header {
+      padding: 3rem 2rem;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      animation: slideDown 1s ease-out;
+    }
+
+    header p {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      animation: fadeInText 2s ease;
+    }
+
+    
+    header img.logo-left,
+    header img.logo-right {
+      position:absolute;
+      top: 9px;
+      width: 70px;
+      height: auto;
+    }
+    
+      header img.logo-left {
+      left: 20px;
+    }
+
+    header img.logo-right {
+      right: 20px;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #4f4e90;
+    }
+
+    .symptoms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .symptom-card {
+      background: #f7f8fc;
+      border-left: 6px solid #4f4e90;
+      padding: 1.2rem;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: bounceIn 0.6s ease forwards;
+    }
+
+    .symptom-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin: 2rem auto 0;
+      padding: 0.8rem 1.8rem;
+      font-size: 1rem;
+      background: #4f4e90;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s;
+      animation: fadeIn 1.2s ease-in-out;
+      text-align: center;
+    }
+
+    .back-btn:hover {
+      background: #3e3d7d;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0 }
+      to { opacity: 1 }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-30px); opacity: 0 }
+      to { transform: translateY(0); opacity: 1 }
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0 }
+      to { opacity: 1 }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(20px); opacity: 0 }
+      to { transform: translateY(0); opacity: 1 }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.9); opacity: 0 }
+      60% { transform: scale(1.05); opacity: 1 }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      section {
+        padding: 1.5rem;
+      }
+
+      .back-btn {
+        width: 100%;
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+     <img src="logo sakura.png" alt="Logo Kiri" class="logo-left" />
+    <img src="LOGO.png" alt="Logo Kanan" class="logo-right" />
+    <h1>Relasi sehat di dunia digital</h1>
+    Di era digital saat ini, interaksi sosial telah bergeser ke ruang maya. Kita bisa terhubung dengan siapa saja hanya melalui layar. Namun, penting untuk memahami bahwa tidak semua hubungan digital membawa dampak positif bagi kesehatan mental kita.</p>
+  </header>
+
+  <section>
+    <h2>Apa itu relasi sehat di dunia  digital?</h2>
+      <p><strong>Relasi</strong> sehat di dunia digital adalah hubungan antar individu yang dijalin dan dijaga melalui media digital seperti media sosial, pesan instan, atau platform komunikasi lainnya, yang ditandai dengan komunikasi terbuka, saling menghormati, kepercayaan, batasan yang sehat, dan dukungan emosional.
+
+Relasi ini bisa berupa hubungan pertemanan, keluarga, percintaan, bahkan rekan kerja, yang dilakukan secara virtual namun tetap memiliki dampak besar terhadap kondisi mental dan emosional seseorang.
+
+</p>
+<section>
+    <div class="symptoms">
+       <h2><span class="emoji">✅</span>Ciri-Ciri Relasi Digital yang Sehat</h2>
+    <ul>
+      <li>🗣️ Komunikasi yang jujur dan terbuka</li>
+      <li>🛡️ Menghargai privasi satu sama lain</li>
+      <li>🤝 Saling mendukung dan memberikan ruang pribadi</li>
+      <li>📴 Tidak memaksa balas cepat atau mengecek status online terus-menerus</li>
+    </ul>
+    </div>
+  </section>
+<section>
+    <h2><span class="emoji">⚠️</span>Tanda-Tanda Relasi Digital Tidak Sehat</h2>
+    <ul>
+      <li>🔒 Diperiksa atau dikontrol secara berlebihan</li>
+      <li>😢 Mendapatkan tekanan emosional lewat pesan</li>
+      <li>📸 Dipaksa berbagi foto atau informasi pribadi</li>
+      <li>❌ Rasa bersalah saat tidak membalas dengan cepat</li>
+    </ul>
+
+    
+    <div style="text-align: center;">
+      <a href="h.page.html" class="back-btn">← Kembali ke Homepage</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Kita Peduli — Dibuat dengan kepedulian, untuk jiwa yang terus bertumbuh.
+  </footer>
+
+</body>
+</html>

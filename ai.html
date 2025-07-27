@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MindBot - Konseling Remaja</title>
+  <style>
+     :root {
+      --sunrise-bg: linear-gradient(135deg, #e0ecff 0%, #fff8e6 100%);
+      --sunrise-nav-btn: linear-gradient(45deg, #7ab9f4, #b388ff);
+      --sunrise-card-bg: rgba(255, 239, 239, 0.95);
+      --sunrise-text: #34495e;
+      --sunrise-meta: #5e7c7e;
+      --sunrise-paragraph: #425567;
+      --sunrise-accent: #b388ff;
+      
+      --ocean-bg: linear-gradient(135deg, #181a1b 0%, #a1c4fd 100%);
+      --ocean-nav-btn: linear-gradient(45deg, #0093E9, #80D0C7);
+      --ocean-card-bg: rgba(255, 255, 255, 0.95);
+      --ocean-text: #1a3b5d;
+      --ocean-meta: #5d7a9c;
+      --ocean-paragraph: #2d527a;
+      --ocean-accent: #0093E9;
+      
+      --nature-bg: linear-gradient(135deg, #d9f6e6 0%, #b0eacd 100%);
+      --nature-nav-btn: linear-gradient(45deg, #56ab2f, #a8e063);
+      --nature-card-bg: rgba(255, 255, 255, 0.95);
+      --nature-text: #1e5631;
+      --nature-meta: #4a785e;
+      --nature-paragraph: #2d7248;
+      --nature-accent: #56ab2f;
+      
+      --pink-bg: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+      --pink-nav-btn: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      --pink-card-bg: rgba(255, 255, 255, 0.95);
+      --pink-text: #6a0dad;
+      --pink-meta: #9b59b6;
+      --pink-paragraph: #8e44ad;
+      --pink-accent: #ff9a9e;
+      
+      --dark-bg: linear-gradient(135deg, #1c1c1c 0%, #2d2d2d 100%);
+      --dark-nav-btn: linear-gradient(45deg, #6a11cb, #2575fc);
+      --dark-card-bg: rgba(46, 46, 46, 0.95);
+      --dark-text: #f5f7fa;
+      --dark-meta: #a0aec0;
+      --dark-paragraph: #000000;
+      --dark-accent:  linear-gradient(45deg, #49138300, #2575fc);
+      
+      --transition-theme: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      --border-radius: 16px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+      --inner-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background:url('ppppp.jpeg');
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0 2rem 2.5rem;
+      position: relative;
+    }
+    
+    nav::after {
+      content: "";
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 800px;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.08);
+    }
+    
+    body.dark nav::after {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    
+    nav a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #7ab9f4, #b388ff);
+      color: rgb(237, 229, 229);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    nav a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(180, 167, 167, 0.15);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+      z-index: -1;
+    }
+    
+    nav a:hover::before {
+      transform: translateX(0);
+    }
+    
+    nav a:hover {
+      transform: translateY(-3px);
+      box-shadow:  #cd2d2d;
+    }
+    
+    nav a i {
+      margin-right: rem;
+      font-size: 1.2rem;
+    }
+
+     
+    .menu {
+      position: relative;
+    }
+    
+    .menu-btn {
+      background: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      color: var(--sunrise-text);
+    }
+    
+    .menu-btn:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 110%;
+      right: 0;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-hover);
+      padding: 1.2rem;
+      width: 220px;
+      z-index: 100;
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    .dropdown button, .theme-select {
+      width: 100%;
+      text-align: left;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.6rem;
+      border-radius: 8px;
+      border: none;
+      background: rgba(0, 0, 0, 0.03);
+      color: var(--sunrise-text);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+    }
+    
+    .dropdown button:hover {
+      background: rgba(0, 0, 0, 0.08);
+    }
+    
+    .dropdown button i {
+      margin-right: 0.8rem;
+    }
+    
+    .theme-select {
+      padding: 0.8rem 1rem;
+    }
+    
+    .theme-select label {
+      margin-right: 0.8rem;
+      flex-shrink: 0;
+    }
+    
+    .theme-select select {
+      background: transparent;
+      border: none;
+      width: 100%;
+      color: var(--sunrise-text);
+      font-weight: 500;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      margin-top: auto;
+      color: var(--sunrise-meta);
+      font-size: 0.95rem;
+      font-weight: 500;
+      background: rgba(0, 0, 0, 0.02);
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+     header {
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(107, 183, 255, 0.1) 0%, rgba(179, 136, 255, 0.1) 100%);
+      z-index: -1;
+      opacity: 0.4;
+    }
+    
+    header h1 {
+    font-size: 50px;
+    max-width: 700px;
+    color:#949090
+    }
+    header p {
+      font-size: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--sunrise-meta);
+      font-weight: 400;
+    }
+
+  header img.logo-left,
+    header img.logo-right {
+      position:absolute;
+      top: 9px;
+      width: 70px;
+      height: auto;
+    }
+    
+      header img.logo-left {
+      left: 20px;
+    }
+
+    header img.logo-right {
+      right: 20px;
+    }
+    
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .feature {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      background: var(--sunrise-card-bg);
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      color: var(--sunrise-text);
+    }
+    
+    .feature::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--sunrise-accent);
+      transform: translateX(-100%);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    .feature:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .feature:hover::before {
+      transform: translateX(0);
+    }
+    
+    .feature i {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--sunrise-accent);
+      transition: var(--transition);
+    }
+    
+    .feature:hover i {
+      transform: scale(1.1);
+    }
+    
+    .feature h3 {
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+    
+    .feature p {
+      color: var(--sunrise-paragraph);
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+    
+    #chatContainer {
+      width: 100%;
+      max-width: 500px;
+      background: #e7e1e1;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    #chatMessages {
+      height: 400px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .message {
+      margin: 8px 0;
+      padding: 8px 12px;
+      border-radius: 12px;
+      max-width: 80%;
+      line-height: 1.5;
+    }
+
+    .user {
+      background-color: #d0ebff;
+      align-self: flex-end;
+      text-align: right;
+      margin-left: auto;
+    }
+
+    .bot {
+      background-color: #e6f4ea;
+      align-self: flex-start;
+      margin-right: auto;
+    }
+
+    #messageInput {
+      width: 80%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    #sendButton {
+      padding: 10px 15px;
+      background-color: #1e2220;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #sendButton:hover {
+      background-color: #415349;
+    }
+
+    
+    @media (max-width: 900px) {
+      h1 {
+        font-size: 2.4rem;
+      }
+      
+      h2 {
+        font-size: 1.9rem;
+      }
+      
+      .features, .articles {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 3rem 1.5rem 2rem;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        padding-bottom: 2rem;
+      }
+      
+      nav a {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+      }
+      
+      .feature, .article {
+        padding: 2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.7rem;
+      }
+      
+      header p {
+        font-size: 1.1rem;
+      }
+      
+      .features, .articles {
+        grid-template-columns: 1fr;
+      }
+      
+      .dropdown {
+        right: 50%;
+        transform: translateX(50%);
+      }
+    }
+
+body {
+  animation: fadeInBody 1.2s ease-in-out;
+}
+@keyframes fadeInBody {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.logo-left, .logo-right {
+  animation: floatLogo 4s ease-in-out infinite;
+}
+@keyframes floatLogo {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+header h1, header h2 {
+  animation: waveFade 1s ease-in-out forwards;
+}
+@keyframes waveFade {
+  0% { opacity: 0; transform: scale(0.95) rotateX(90deg); }
+  100% { opacity: 1; transform: scale(1) rotateX(0deg); }
+}
+
+nav a {
+  animation: navPulse 4s infinite;
+}
+@keyframes navPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.menu-btn:hover i {
+  animation: spinMenu 0.5s ease-in-out;
+}
+@keyframes spinMenu {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(180deg); }
+}
+
+.feature:hover {
+  animation: rotateFeature 0.4s ease forwards;
+}
+@keyframes rotateFeature {
+  from { transform: rotate(-1deg) scale(1); }
+  to { transform: rotate(1deg) scale(1.03); }
+}
+
+.article {
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+.articles .article:nth-child(1) { animation-delay: 0.2s; }
+.articles .article:nth-child(2) { animation-delay: 0.4s; }
+.articles .article:nth-child(3) { animation-delay: 0.6s; }
+.articles .article:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+  animation: slideUp 1.2s ease-in-out;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown {
+  animation: dropdownAppear 0.4s ease-out;
+}
+@keyframes dropdownAppear {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.article:hover h4 {
+  animation: bounceText 0.5s ease-in-out;
+}
+@keyframes bounceText {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+  50% { transform: translateY(0); }
+  70% { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+  </style>
+</head>
+<body>
+    <header>
+    <img src="logo sakura.png" alt="Logo Kiri" class="logo-left" />
+    <img src="LOGO.png" alt="Logo Kanan" class="logo-right" />
+    <h1>Kita Peduli</h1> 
+    <p>Mari tumbuh bersama dalam kesehatan mental dan dukungan emosional</p>  
+    </header>
+   
+    <nav>
+    <a href="h.page.html"><i class="fas fa-house"></i> Home</a>
+    <a href="positive act.html" ><i class="fas fa-star"></i> Positive Actions</a>
+    <a href="s.w.html"><i class="fas fa-users"></i> Social Wall</a>
+    <a href="#" style="background: var(--dark-accent);"><i class="fas fa-robot"></i> Mind Bot</a>
+      </div>
+    </div>
+  </nav>
+  <div id="chatContainer">
+   <i class="fas fa-bot"></i> <h2>MindBot - Teman Konselingmu</h2>
+    <div id="chatMessages"></div>
+    <input type="text" id="messageInput" placeholder="Ketik pesanmu di sini..." />
+    <button id="sendButton">Kirim</button>
+  </div>
+ <footer>
+    &copy; 2025 Kita Peduli | © 2025 Kita Peduli — Dibuat dengan kepedulian, untuk jiwa yang terus bertumbuh.
+  </footer>
+  <script>
+    const chatMessages = document.getElementById('chatMessages');
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+
+    const chatHistory = [];
+
+    const responses = [
+      {
+        keywords: ["cemas", "panik", "khawatir", "overthinking", "nervous"],
+        responses: [
+          "Kamu tidak sendiri. Rasa cemas itu manusiawi, tapi jangan biarkan itu menguasaimu. Tarik napas dalam, tenangkan dirimu ya.",
+          "Overthinking bisa menguras energi. Coba fokus pada saat ini dan pikirkan hal-hal positif yang bisa kamu syukuri.",
+          "Kalau kamu merasa panik, coba lakukan grounding — rasakan sekelilingmu dan tarik napas perlahan."
+        ]
+      },
+      {
+        keywords: ["stres", "lelah", "capek", "beban", "burnout", "jenuh"],
+        responses: [
+          "Saat kamu merasa lelah secara emosional, istirahat sejenak bukan berarti kamu menyerah. Itu bentuk mencintai diri sendiri.",
+          "Burnout itu nyata dan bisa dialami siapa saja. Luangkan waktu untuk hal-hal yang membuatmu bahagia, walau sebentar.",
+          "Kamu hebat sudah bisa bertahan sampai sekarang. Jangan terlalu keras pada diri sendiri ya."
+        ]
+      },
+      {
+        keywords: ["depresi", "sedih", "putus asa", "menyerah", "tidak berharga", "bunuh diri", "gelap"],
+        responses: [
+          "Aku ada di sini untukmu. Kamu sangat berharga dan pantas mendapatkan dukungan dan cinta.",
+          "Jangan menyerah, ya. Dunia ini lebih indah dengan kehadiranmu. Ceritakanlah perasaanmu ke orang yang kamu percaya.",
+          "Tolong ingat, kamu tidak sendirian. Ada harapan, dan akan selalu ada jalan keluar."
+        ]
+      },
+      {
+        keywords: ["teman", "sendiri", "dijauhi", "kesepian", "diabaikan"],
+        responses: [
+          "Kesepian bisa terasa menyakitkan, tapi itu bukan akhir dari segalanya. Akan ada orang yang menghargaimu apa adanya.",
+          "Kadang kita merasa sendiri di tengah keramaian. Tapi aku ingin kamu tahu, aku mendengarkanmu.",
+          "Pertemanan bisa rumit. Tapi kamu tetap berharga, bahkan jika orang lain belum menyadarinya."
+        ]
+      }
+    ];
+
+    function addMessage(content, sender) {
+      const message = document.createElement('div');
+      message.className = `message ${sender}`;
+      message.textContent = content;
+      chatMessages.appendChild(message);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function getBotResponse(message) {
+      const lowerCaseMessage = message.toLowerCase();
+
+      for (const entry of responses) {
+        for (const keyword of entry.keywords) {
+          if (lowerCaseMessage.includes(keyword)) {
+            const randomResponse = entry.responses[Math.floor(Math.random() * entry.responses.length)];
+            return randomResponse;
+          }
+        }
+      }
+
+      return "Terima kasih sudah berbagi. Bisa kamu ceritakan lebih banyak? Aku ingin memahami perasaanmu lebih baik.";
+    }
+
+    function handleUserInput() {
+      const userMessage = messageInput.value.trim();
+      if (userMessage === '') return;
+
+      addMessage(userMessage, 'user');
+      chatHistory.push(userMessage);
+
+      setTimeout(() => {
+        const botReply = getBotResponse(userMessage);
+        addMessage(botReply, 'bot');
+      }, 600);
+
+      messageInput.value = '';
+    }
+
+    sendButton.addEventListener('click', handleUserInput);
+    messageInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleUserInput();
+    });
+  </script>
+</body>
+</html>

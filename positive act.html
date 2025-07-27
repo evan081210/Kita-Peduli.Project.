@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Positivity Hub - Positive Actions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* === VARIABLES & RESET === */
+   :root {
+      --sunrise-bg: linear-gradient(135deg, #e0ecff 0%, #fff8e6 100%);
+      --sunrise-nav-btn: linear-gradient(45deg, #7ab9f4, #b388ff);
+      --sunrise-card-bg: rgba(255, 239, 239, 0.95);
+      --sunrise-text: #34495e;
+      --sunrise-meta: #5e7c7e;
+      --sunrise-paragraph: #425567;
+      --sunrise-accent: #b388ff;
+      
+      --ocean-bg: linear-gradient(135deg, #181a1b 0%, #a1c4fd 100%);
+      --ocean-nav-btn: linear-gradient(45deg, #0093E9, #80D0C7);
+      --ocean-card-bg: rgba(255, 255, 255, 0.95);
+      --ocean-text: #1a3b5d;
+      --ocean-meta: #5d7a9c;
+      --ocean-paragraph: #2d527a;
+      --ocean-accent: #0093E9;
+      
+      --nature-bg: linear-gradient(135deg, #d9f6e6 0%, #b0eacd 100%);
+      --nature-nav-btn: linear-gradient(45deg, #56ab2f, #a8e063);
+      --nature-card-bg: rgba(255, 255, 255, 0.95);
+      --nature-text: #1e5631;
+      --nature-meta: #4a785e;
+      --nature-paragraph: #2d7248;
+      --nature-accent: #56ab2f;
+      
+      --pink-bg: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+      --pink-nav-btn: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      --pink-card-bg: rgba(255, 255, 255, 0.95);
+      --pink-text: #6a0dad;
+      --pink-meta: #9b59b6;
+      --pink-paragraph: #8e44ad;
+      --pink-accent: #ff9a9e;
+      
+      --dark-bg: linear-gradient(135deg, #1c1c1c 0%, #2d2d2d 100%);
+      --dark-nav-btn: linear-gradient(45deg, #6a11cb, #2575fc);
+      --dark-card-bg: rgba(46, 46, 46, 0.95);
+      --dark-text: #f5f7fa;
+      --dark-meta: #a0aec0;
+      --dark-paragraph: #000000;
+      --dark-accent:  linear-gradient(45deg, #49138300, #2575fc);
+      
+      --transition-theme: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      --border-radius: 16px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+      --inner-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 
+                   'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 
+                   'Droid Sans', sans-serif;
+      line-height: 1.6;
+      background: url('ppppp.jpeg');
+      color: var(--sunrise-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-theme);
+    }
+    
+    body.dark {
+      background: var(--dark-bg);
+      color: var(--dark-text);
+    }
+    
+    /* === TYPOGRAPHY === */
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    h2 {
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+    
+    h2.section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: currentColor;
+      border-radius: 2px;
+      opacity: 0.15;
+    }
+    
+    h3 {
+      font-size: 1.6rem;
+    }
+    
+    p {
+      color: var(--sunrise-paragraph);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.01em;
+    }
+    
+    body.dark p {
+      color: var(--dark-paragraph);
+    }
+    
+    /* === LAYOUT & STRUCTURE === */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+    
+    /* === HEADER === */
+    header {
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(107, 183, 255, 0.1) 0%, rgba(179, 136, 255, 0.1) 100%);
+      z-index: -1;
+      opacity: 0.4;
+    }
+    
+    header h1 {
+      font-size: 50px;
+      color: #9fa5ab;
+    }
+    header p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--sunrise-meta);
+      font-weight: 400;
+    }
+
+  header img.logo-left,
+    header img.logo-right {
+      position:absolute;
+      top: 9px;
+      width: 70px;
+      height: auto;
+    }
+    
+      header img.logo-left {
+      left: 20px;
+    }
+
+    header img.logo-right {
+      right: 20px;
+    }
+    
+    /* === NAVIGATION === */
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0 2rem 2.5rem;
+      position: relative;
+    }
+    
+    nav::after {
+      content: "";
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 800px;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.08);
+    }
+    
+    body.dark nav::after {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    
+    nav a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      background: var(--sunrise-nav-btn);
+      color: white;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    nav a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+      z-index: -1;
+    }
+    
+    nav a:hover::before {
+      transform: translateX(0);
+    }
+    
+    nav a:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    nav a i {
+      margin-right: 0.7rem;
+      font-size: 1.2rem;
+    }
+    
+    .menu {
+      position: relative;
+    }
+    
+    .menu-btn {
+      background: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      color: var(--sunrise-text);
+    }
+    
+    .menu-btn:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 110%;
+      right: 0;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-hover);
+      padding: 1.2rem;
+      width: 220px;
+      z-index: 100;
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    .dropdown button, .theme-select {
+      width: 100%;
+      text-align: left;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.6rem;
+      border-radius: 8px;
+      border: none;
+      background: rgba(0, 0, 0, 0.03);
+      color: var(--sunrise-text);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+    }
+    
+    .dropdown button:hover {
+      background: rgba(0, 0, 0, 0.08);
+    }
+    
+    .theme-select {
+      padding: 0.8rem 1rem;
+    }
+    
+    .theme-select label {
+      margin-right: 0.8rem;
+      flex-shrink: 0;
+    }
+    
+    .theme-select select {
+      background: transparent;
+      border: none;
+      width: 100%;
+      color: var(--sunrise-text);
+      font-weight: 500;
+      cursor: pointer;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* === POSITIVE ACTIONS SECTION === */
+    .positive-actions-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    @media (max-width: 900px) {
+      .positive-actions-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .action-form {
+      background: var(--sunrise-card-bg);
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .action-form::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--sunrise-accent);
+      transform: translateX(-100%);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    .action-form:hover::before {
+      transform: translateX(0);
+    }
+    
+    .action-form h3 {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .action-form h3 i {
+      color: var(--sunrise-accent);
+    }
+    
+    .action-input {
+      width: 100%;
+      padding: 1.2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+    
+    .action-input:focus {
+      outline: none;
+      border-color: var(--sunrise-accent);
+      box-shadow: 0 0 0 3px rgba(179, 136, 255, 0.2);
+    }
+    
+    .add-action-btn {
+      width: 100%;
+      padding: 1.2rem;
+      border-radius: 12px;
+      border: none;
+      background: var(--sunrise-accent);
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(179, 136, 255, 0.3);
+    }
+    
+    .add-action-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(179, 136, 255, 0.4);
+    }
+    
+    .your-actions {
+      background: var(--sunrise-card-bg);
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      max-height: 500px;
+      overflow-y: auto;
+    }
+    
+    .your-actions h3 {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .actions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .action-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.02);
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    .action-item .point {
+      background: var(--sunrise-accent);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* === LEADERBOARD SECTION === */
+    .leaderboard-section {
+      background: var(--sunrise-card-bg);
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 4rem;
+    }
+    
+    .leaderboard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    
+    .leaderboard-header h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .leaderboard-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .leaderboard-item {
+      display: grid;
+      grid-template-columns: 60px 1fr 80px;
+      align-items: center;
+      padding: 1.2rem;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.02);
+      transition: var(--transition);
+    }
+    
+    .leaderboard-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .rank {
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--sunrise-accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    
+    .points {
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-align: right;
+      color: var(--sunrise-accent);
+    }
+    
+    .medal {
+      font-size: 1.8rem;
+      margin-right: 0.5rem;
+    }
+    
+    .gold { color: gold; }
+    .silver { color: silver; }
+    .bronze { color: #cd7f32; }
+    
+    .current-user {
+      background: rgba(179, 136, 255, 0.1);
+      border: 1px solid var(--sunrise-accent);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      margin-top: auto;
+      color: var(--sunrise-meta);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    body.dark .action-form,
+    body.dark .your-actions,
+    body.dark .leaderboard-section {
+      background: var(--dark-card-bg);
+    }
+    
+    body.dark .action-input {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: var(--dark-text);
+    }
+    
+    body.dark .action-item,
+    body.dark .leaderboard-item {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    body.dark .action-item .point {
+      background: var(--dark-accent);
+    }
+    
+    body.dark .points {
+      color: var(--dark-accent);
+    }
+    
+    body.dark .current-user {
+      background: rgba(106, 17, 203, 0.1);
+      border: 1px solid var(--dark-accent);
+    }
+    
+    /* === RESPONSIVE DESIGN === */
+    @media (max-width: 768px) {
+      .leaderboard-item {
+        grid-template-columns: 50px 1fr 70px;
+        padding: 1rem;
+      }
+      
+      .user-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .leaderboard-item {
+        grid-template-columns: 40px 1fr 60px;
+        padding: 0.8rem;
+      }
+      
+      .points {
+        font-size: 1.2rem;
+      }
+    }
+body {
+  animation: fadeInBody 1.2s ease-in-out;
+}
+@keyframes fadeInBody {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.logo-left, .logo-right {
+  animation: floatLogo 4s ease-in-out infinite;
+}
+@keyframes floatLogo {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+header h1, header h2 {
+  animation: waveFade 1s ease-in-out forwards;
+}
+@keyframes waveFade {
+  0% { opacity: 0; transform: scale(0.95) rotateX(90deg); }
+  100% { opacity: 1; transform: scale(1) rotateX(0deg); }
+}
+
+nav a {
+  animation: navPulse 4s infinite;
+}
+@keyframes navPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.menu-btn:hover i {
+  animation: spinMenu 0.5s ease-in-out;
+}
+@keyframes spinMenu {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(180deg); }
+}
+
+.feature:hover {
+  animation: rotateFeature 0.4s ease forwards;
+}
+@keyframes rotateFeature {
+  from { transform: rotate(-1deg) scale(1); }
+  to { transform: rotate(1deg) scale(1.03); }
+}
+
+.article {
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+.articles .article:nth-child(1) { animation-delay: 0.2s; }
+.articles .article:nth-child(2) { animation-delay: 0.4s; }
+.articles .article:nth-child(3) { animation-delay: 0.6s; }
+.articles .article:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+  animation: slideUp 1.2s ease-in-out;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown {
+  animation: dropdownAppear 0.4s ease-out;
+}
+@keyframes dropdownAppear {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.article:hover h4 {
+  animation: bounceText 0.5s ease-in-out;
+}
+@keyframes bounceText {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+  50% { transform: translateY(0); }
+  70% { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo sakura.png" alt="Logo Kiri" class="logo-left" />
+    <img src="LOGO.png" alt="Logo Kanan" class="logo-right" />
+    <h1>Kita Peduli</h1>
+    <p>Mari tumbuh bersama dalam kesehatan mental & dukungan emosional</p>
+  </header>
+
+  <nav>
+    <a href="h.page.html"><i class="fas fa-house"></i> Home</a>
+    <a href="#" style="background: var(--dark-accent);"><i class="fas fa-star"></i> Positive Actions</a>
+    <a href="s.w.html"><i class="fas fa-users"></i> Social Wall</a>
+    <a href="ai.html"><i class="fas fa-robot"></i> Mind Bot</a>
+    <div class="menu">
+      <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-ellipsis-v"></i></button>
+      <div class="dropdown" id="dropdownMenu">
+        <button onclick="toggleDarkMode()"><i class="fas fa-moon"></i> Mode Gelap/Terang</button>
+        <button onclick="location.href='s.up.html'"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+        <div class="theme-select">
+          <label for="themePicker"><i class="fas fa-palette"></i> Tema:</label>
+          <select id="themePicker" onchange="changeTheme(this.value)">
+            <option value="sunrise">Sunrise</option>
+            <option value="ocean">Ocean</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2 class="section-title">Positive Actions</h2>
+    
+    <div class="positive-actions-container">
+      <div class="action-form">
+        <h3><i class="fas fa-plus-circle"></i> Tambahkan Hal Positif</h3>
+        <input type="text" id="positiveActionInput" class="action-input" placeholder="Apa hal positif yang kamu lakukan hari ini?">
+        <button class="add-action-btn" onclick="addPositiveAction()">Tambahkan & Dapatkan Poin</button>
+      </div>
+      
+      <div class="your-actions">
+        <h3><i class="fas fa-list-check"></i> Hal Positif yang Telah Kamu Lakukan</h3>
+        <div class="actions-list" id="actionsList">
+          <!-- Daftar aksi positif akan muncul di sini -->
+        </div>
+      </div>
+    </div>
+    
+    <div class="leaderboard-section">
+      <div class="leaderboard-header">
+        <h3><i class="fas fa-trophy"></i> Leaderboard Positif</h3>
+        <div class="total-points">
+          <span id="userPoints">Poin Kamu: 0</span>
+        </div>
+      </div>
+      
+      <div class="leaderboard-list" id="leaderboardList">
+        <!-- Leaderboard akan muncul di sini -->
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Kita Peduli | Dibuat dengan kepedulian, untuk jiwa yang terus bertumbuh.
+  </footer>
+
+  <script>
+    // Data User
+    let currentUser = JSON.parse(localStorage.getItem('currentUser')) || {
+      username: "Pengguna",
+      points: 0,
+      actions: [],
+      joinDate: new Date().toISOString()
+    };
+    
+    // Leaderboard Data
+    let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+    
+    // Inisialisasi user di leaderboard jika belum ada
+    function initializeUserInLeaderboard() {
+      const userExists = leaderboard.some(user => user.username === currentUser.username);
+      
+      if (!userExists) {
+        leaderboard.push({
+          username: currentUser.username,
+          points: currentUser.points,
+          joinDate: currentUser.joinDate
+        });
+        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+      }
+    }
+    
+    // Tambahkan aksi positif
+    function addPositiveAction() {
+      const input = document.getElementById('positiveActionInput');
+      const actionText = input.value.trim();
+      
+      if (!actionText) {
+        alert('Silakan masukkan hal positif yang kamu lakukan');
+        return;
+      }
+      
+      // Update current user
+      currentUser.points++;
+      currentUser.actions.unshift({
+        id: Date.now(),
+        text: actionText,
+        date: new Date().toLocaleDateString('id-ID'),
+        timestamp: new Date().getTime()
+      });
+      
+      // Update leaderboard
+      const userIndex = leaderboard.findIndex(user => user.username === currentUser.username);
+      if (userIndex !== -1) {
+        leaderboard[userIndex].points = currentUser.points;
+      } else {
+        leaderboard.push({
+          username: currentUser.username,
+          points: currentUser.points,
+          joinDate: currentUser.joinDate
+        });
+      }
+      
+      // Urutkan leaderboard
+      leaderboard.sort((a, b) => b.points - a.points);
+
+      // Simpan ke localStorage
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+      
+      // Update UI
+      updateActionsList();
+      updateLeaderboard();
+      updateUserPoints();
+      
+      // Reset input
+      input.value = '';
+      
+      // Animasi konfirmasi
+      const btn = document.querySelector('.add-action-btn');
+      btn.textContent = '✓ Berhasil Ditambahkan!';
+      setTimeout(() => {
+        btn.textContent = 'Tambahkan & Dapatkan Poin';
+      }, 2000);
+    }
+    
+    // Update daftar aksi
+    function updateActionsList() {
+      const actionsList = document.getElementById('actionsList');
+      actionsList.innerHTML = '';
+      
+      if (currentUser.actions.length === 0) {
+        actionsList.innerHTML = `
+          <div style="text-align: center; padding: 20px; color: var(--sunrise-meta);">
+            <i class="fas fa-smile" style="font-size: 2rem; margin-bottom: 10px;"></i>
+            <p>Belum ada aksi positif yang dicatat. Mulailah menambahkan!</p>
+          </div>
+        `;
+        return;
+      }
+      
+      currentUser.actions.forEach(action => {
+        const actionItem = document.createElement('div');
+        actionItem.className = 'action-item';
+        actionItem.innerHTML = `
+          <div class="action-text">
+            <div>${action.text}</div>
+            <small style="color: var(--sunrise-meta);">${action.date}</small>
+          </div>
+          <div class="point">+1</div>
+        `;
+        actionsList.appendChild(actionItem);
+      });
+    }
+    
+    // Update leaderboard
+    function updateLeaderboard() {
+      const leaderboardList = document.getElementById('leaderboardList');
+      leaderboardList.innerHTML = '';
+      
+      if (leaderboard.length === 0) {
+        leaderboardList.innerHTML = `
+          <div style="text-align: center; padding: 20px; color: var(--sunrise-meta);">
+            <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 10px;"></i>
+            <p>Belum ada data leaderboard</p>
+          </div>
+        `;
+        return;
+      }
+      
+      leaderboard.forEach((user, index) => {
+        const leaderboardItem = document.createElement('div');
+        leaderboardItem.className = `leaderboard-item ${user.username === currentUser.username ? 'current-user' : ''}`;
+        
+        let medal = '';
+        if (index === 0) medal = '<span class="medal gold">🥇</span>';
+        else if (index === 1) medal = '<span class="medal silver">🥈</span>';
+        else if (index === 2) medal = '<span class="medal bronze">🥉</span>';
+        
+        const initials = user.username.split(' ').map(name => name[0]).join('').toUpperCase();
+        
+        leaderboardItem.innerHTML = `
+          <div class="rank">${medal} ${index + 1}</div>
+          <div class="user-info">
+            <div class="user-avatar">${initials}</div>
+            <div>
+              <div>${user.username}${user.username === currentUser.username ? ' (Anda)' : ''}</div>
+              <small style="color: var(--sunrise-meta);">Bergabung ${new Date(user.joinDate).toLocaleDateString('id-ID')}</small>
+            </div>
+          </div>
+          <div class="points">${user.points}</div>
+        `;
+        
+        leaderboardList.appendChild(leaderboardItem);
+      });
+    }
+    
+    // Update poin user
+    function updateUserPoints() {
+      document.getElementById('userPoints').textContent = `Poin Kamu: ${currentUser.points}`;
+    }
+    
+    // Toggle menu dropdown
+    function toggleMenu() {
+      const dropdown = document.getElementById("dropdownMenu");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+    
+    // Toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+      localStorage.setItem('darkMode', document.body.classList.contains("dark"));
+    }
+    
+    // Ganti tema
+    function changeTheme(theme) {
+      localStorage.setItem('theme', theme);
+      applyTheme(theme);
+    }
+    
+    // Terapkan tema
+    function applyTheme(theme) {
+      if (theme === 'ocean') {
+        document.documentElement.style.setProperty('--sunrise-bg', 'linear-gradient(135deg, #c2e9fb 0%, #a1c4fd 100%)');
+        document.documentElement.style.setProperty('--sunrise-nav-btn', 'linear-gradient(45deg, #0093E9, #80D0C7)');
+        document.documentElement.style.setProperty('--sunrise-accent', '#0093E9');
+      } else {
+        document.documentElement.style.setProperty('--sunrise-bg', 'linear-gradient(135deg, #e0ecff 0%, #fff8e6 100%)');
+        document.documentElement.style.setProperty('--sunrise-nav-btn', 'linear-gradient(45deg, #6ab7ff, #b388ff)');
+        document.documentElement.style.setProperty('--sunrise-accent', '#b388ff');
+      }
+    }
+    
+    // Inisialisasi saat halaman dimuat
+    window.onload = function() {
+      // Terapkan dark mode jika aktif
+      if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark');
+      }
+      
+      // Terapkan tema yang dipilih
+      const savedTheme = localStorage.getItem('theme') || 'sunrise';
+      document.getElementById('themePicker').value = savedTheme;
+      applyTheme(savedTheme);
+      
+      // Inisialisasi user di leaderboard
+      initializeUserInLeaderboard();
+      
+      // Update UI
+      updateActionsList();
+      updateLeaderboard();
+      updateUserPoints();
+    };
+  </script>
+</body>
+</html>

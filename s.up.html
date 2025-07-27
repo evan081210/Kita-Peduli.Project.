@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Positivity Hub - Daftar</title>
+  <style>
+    body {
+      background: url('ppppp.jpeg');
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #2c3e50;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .signup-container {
+      background: rgba(223, 220, 220, 0.95);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 320px;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    .signup-container img {
+      width: 70px;
+      margin-bottom: 20px;
+      animation: fadein 1s ease-in;
+    }
+
+    h1 {
+      color: #4a6fa5;
+      margin-bottom: 25px;
+      font-size: 24px;
+    }
+
+    input[type="text"], 
+    input[type="password"],
+    input[type="email"] {
+      width: 89%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      background: #f9f9f9;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #4a6fa5;
+      box-shadow: 0 0 8px rgba(74, 111, 165, 0.3);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #4a6fa5, #6a8cc3);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #3a5a8a, #5a7cb3);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(74, 111, 165, 0.3);
+    }
+
+    .login-link {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .login-link a {
+      color: #4a6fa5;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 13px;
+      margin-top: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <img src="logo sakura.png" alt="user-icon"><img src="LOGO.png" alt="user-icon">
+    <h1>Buat Akun Baru</h1>
+    
+    <form id="signupForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <div id="usernameError" class="error-message">Username sudah digunakan</div>
+      
+      <input type="email" id="email" placeholder="Email" required>
+      
+      <input type="password" id="password" placeholder="Password" minlength="6" required>
+      <div id="passwordError" class="error-message">Password minimal 6 karakter</div>
+      
+      <button type="submit">Daftar Sekarang</button>
+    </form>
+    
+    <div class="login-link">
+      Sudah punya akun? <a href="index.html">Masuk di sini</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      
+      // Validasi sederhana
+      if (password.length < 6) {
+        document.getElementById('passwordError').style.display = 'block';
+        return;
+      } else {
+        document.getElementById('passwordError').style.display = 'none';
+      }
+      
+      // Cek apakah username sudah ada
+      const users = JSON.parse(localStorage.getItem('users')) || {};
+      if (users[username]) {
+        document.getElementById('usernameError').style.display = 'block';
+        return;
+      } else {
+        document.getElementById('usernameError').style.display = 'none';
+      }
+      
+      // Buat user baru
+      const newUser = {
+        username: username,
+        email: email,
+        password: password, // Dalam produksi sebaiknya di-hash
+        points: 0,
+        actions: [],
+        joinDate: new Date().toISOString()
+      };
+      
+      // Simpan user
+      users[username] = newUser;
+      localStorage.setItem('users', JSON.stringify(users));
+      
+      // Update leaderboard
+      const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+      leaderboard.push({
+        username: username,
+        points: 0,
+        joinDate: new Date().toISOString()
+      });
+      localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+      
+      // Set user yang baru login
+      localStorage.setItem('currentUser', JSON.stringify(newUser));
+      
+      // Redirect ke halaman utama
+      window.location.href = 'h.page.html';
+    });
+  </script>
+</body>
+</html>
